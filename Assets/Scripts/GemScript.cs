@@ -3,16 +3,33 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-enum GemColor {
-    Blue,
-    Purple,
-    Pink,
-    Yellow
+
+public class Gem
+{
+    public Color color;
+    string name;
+
+    Gem(string n, Color c) {
+        name = n;
+        color = c;
+    }
+
+    static Gem Purple = new Gem("Purple", new Color(0.475f, 0.416f, 0.749f));
+    static Gem Blue = new Gem("Blue", new Color(0.345f, 0.659f, 0.749f));
+    static Gem Pink = new Gem("Pink", new Color(0.749f, 0.529f, 0.647f));
+    static Gem Yellow = new Gem("Yellow", new Color(0.981f, 0.926f, 0.616f));
+
+    static Gem[] gems = {Purple, Blue, Pink, Yellow};
+
+    public static Gem getRandomGem() {
+        int colorNum = UnityEngine.Random.Range(0, gems.Length);
+        return gems[colorNum];
+    }
 }
 
 public class GemScript : MonoBehaviour
 {
-    private GemColor color;
+    private Gem color;
 
     public SpriteRenderer spriteRenderer;
 
@@ -21,49 +38,13 @@ public class GemScript : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         
-        int colorNum = UnityEngine.Random.Range(0, 4);
-        color = (GemColor) Enum.ToObject(typeof(GemColor), colorNum);
-        spriteRenderer.color = getColor();
-        Debug.Log(gameObject.name + " : " + spriteRenderer.color);
-
-        Debug.Log(gameObject.name + " : " + color);
+        Gem gem = Gem.getRandomGem();
+        spriteRenderer.color = gem.color;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    Color getColor() {
-        Color c;
-        switch(color) {
-            case GemColor.Blue:
-            {
-                c = new Color(0.345f, 0.659f, 0.749f, 1.0f);
-                break;
-            }
-            case GemColor.Purple:
-            {
-                c = new Color(0.475f, 0.416f, 0.749f, 1.0f);
-                break;
-            }
-            case GemColor.Pink:
-            {
-                c = new Color(0.749f, 0.529f, 0.647f, 1.0f);
-                break;
-            }
-            case GemColor.Yellow:
-            {
-                c = new Color(0.981f, 0.926f, 0.616f, 1.0f);
-                break;
-            }
-            default:
-            {
-                c = new Color();
-                break;
-            }
-        }
-        return c;
     }
 }

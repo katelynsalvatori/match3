@@ -36,6 +36,7 @@ public class GemSpawnerScript : MonoBehaviour
     GameObject spawnGem(Vector3 position, int identifier) {
         GameObject go = Instantiate(gem, position, transform.rotation);
         go.name = "Gem" + identifier.ToString();
+        go.transform.parent = gameObject.transform;
         return go;
     }
 }
