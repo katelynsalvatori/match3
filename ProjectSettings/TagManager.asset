@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gem
+  - Logic
+  - Blue
+  - Yellow
+  - Pink
+  - Purple
   layers:
   - Default
   - TransparentFX

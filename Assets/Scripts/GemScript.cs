@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
-
 
 public class Gem
 {
     public Color color;
-    string name;
+    public string tag;
 
-    Gem(string n, Color c) {
-        name = n;
+    Gem(string t, Color c) {
+        tag = t;
         color = c;
     }
 
@@ -29,8 +25,7 @@ public class Gem
 
 public class GemScript : MonoBehaviour
 {
-    private Gem color;
-
+    Gem gem;
     public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
@@ -38,8 +33,9 @@ public class GemScript : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         
-        Gem gem = Gem.getRandomGem();
+        gem = Gem.getRandomGem();
         spriteRenderer.color = gem.color;
+        tag = gem.tag;
     }
 
     // Update is called once per frame
